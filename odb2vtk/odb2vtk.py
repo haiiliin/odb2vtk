@@ -576,9 +576,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--header",
-        required=True,
+        default=0,
         type=int,
-        help="if 1, extract header information and generate a .json file. Otherwise, generate .vtu file",
+        help="if 1, extract header information and generate a .json file. Otherwise, generate .vtu file. By default 0",
     )
     parser.add_argument(
         "--instance",

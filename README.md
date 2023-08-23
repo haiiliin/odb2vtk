@@ -15,14 +15,14 @@ Use the `odb2vtk` command to convert an ODB file to a VTK file.
 ```sh
 $ odb2vtk --help
 
-usage: odb2vtk.py [-h] --header HEADER [--instance [INSTANCE [INSTANCE ...]]]
+usage: odb2vtk.py [-h] [--header HEADER] [--instance [INSTANCE [INSTANCE ...]]]
                   [--step [STEP [STEP ...]]] [--writeHistory WRITEHISTORY]
                   --odbFile ODBFILE [--writePVD WRITEPVD] [--suffix SUFFIX]
 
 optional arguments:
   -h, --help            show this help message and exit
   --header HEADER       if 1, extract header information and generate a .json
-                        file. Otherwise, generate .vtu file
+                        file. Otherwise, generate .vtu file. By default 0
   --instance [INSTANCE [INSTANCE ...]]
                         selected instance names which are separated by
                         whitespace, e.g. 'instanceName1' 'instanceName2'
@@ -43,14 +43,14 @@ Use the `odb2vtk-multiprocess` command for the multiprocessing version.
 ```sh
 $ odb2vtk-multiprocess --help
 
-usage: odb2vtk-multiprocess [-h] --header HEADER [--instance [INSTANCE ...]]
+usage: odb2vtk-multiprocess [-h] [--header HEADER] [--instance [INSTANCE ...]]
                             [--step [STEP ...]] [--writeHistory WRITEHISTORY]
                             --odbFile ODBFILE [--suffix SUFFIX]
 
 options:
   -h, --help            show this help message and exit
   --header HEADER       if 1, extract header information and generate a .json
-                        file. Otherwise, generate .vtu file
+                        file. Otherwise, generate .vtu file. By default 0
   --instance [INSTANCE ...]
                         selected instance names which are separated by
                         whitespace, e.g. 'instanceName1' 'instanceName2'
