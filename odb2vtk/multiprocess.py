@@ -59,7 +59,8 @@ def main():
     )
     parser.add_argument(
         "--step",
-        help="selected step names and frames which are separated by whitespace, e.g., 'step1:1,2,3' 'step2:2,3,4'",
+        help="selected step names and frames which are separated by whitespace, e.g., 'step1:1,2,3' 'step2:2,3,4'. "
+        "The frames can be any valid Python expression that can be evaluated to an integer iterable, e.g., 'range(1, 10)'",
         nargs="*",
     )
     parser.add_argument("--writeHistory", type=int, help="if 1, write history output.")
@@ -88,8 +89,7 @@ def main():
     for item in args.step:
         steps += '"{0}" '.format(item)
         split = item.split(":")
-        for i in split[1].split(","):
-            step_frame_dict.append("{0}:{1}".format(split[0], int(i)))
+        step_frame_dict = [f"{split[0]}:{frame}" for frame in list(eval(split[1]))]
     instances = ""
     for inst in args.instance:
         instances += '"{0}"'.format(inst) + " "

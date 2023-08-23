@@ -587,7 +587,8 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--step",
-        help="selected step names and frames which are separated by whitespace, e.g., 'step1:1,2,3' 'step2:2,3,4'",
+        help="selected step names and frames which are separated by whitespace, e.g., 'step1:1,2,3' 'step2:2,3,4'. "
+        "The frames can be any valid Python expression that can be evaluated to an integer iterable, e.g., 'range(1, 10)'",
         nargs="*",
     )
     parser.add_argument("--writeHistory", default=0, type=int, help="if 1, write history output.")
@@ -602,7 +603,7 @@ if __name__ == "__main__":
     if not os.path.exists(args.odbFile):
         sys.exit("{0} doesn't exist".format(args.odbFile))
 
-    odb2vtk = ODB2VTK(args.odbFile, args.suffix)
+    odb2vtk = ODB2VTK(os.path.abspath(args.odbFile), args.suffix)
     # if --header is on, ignore all others and extract header information
     if args.header:
         odb2vtk.ExtractHeader()
@@ -619,9 +620,8 @@ if __name__ == "__main__":
     step_frame_dict = {}
     for item in args.step:
         split = item.split(":")
-        step_frame_dict[split[0]] = []
-        for i in split[1].split(","):
-            step_frame_dict[split[0]].append(int(i))
+        frames = eval(split[1])
+        step_frame_dict[split[0]] = [frames] if isinstance(frames, int) else list(frames)
     odb2vtk.ReadArgs(args.instance, step_frame_dict)
     if args.writeHistory:
         odb2vtk.WriteCSVFILE()
