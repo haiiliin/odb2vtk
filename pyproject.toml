@@ -1,0 +1,40 @@
+# pyproject.toml, for more information about configuration options, see 
+# https://setuptools.pypa.io/en/stable/userguide/pyproject_config.html
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+
+[project]
+name = "odb2vtk"
+authors = [
+  { name="WANG Hailin", email="hailin.wang@connect.polyu.hk" },
+]
+description = "ODB2VTK converter"
+readme = "README.md"
+dynamic = ["version"]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["abqpy", "numpy"]
+
+[project.urls]
+"GitHub" = "https://github.com/haiiliin/odb2vtk"
+
+[project.scripts]
+odb2vtk = "odb2vtk.__main__:main"
+odb2vtk-multiprocess = "odb2vtk.multiprocess:main"
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+write_to = "odb2vtk/_version.py"
+fallback_version = "0.0.0+unknown"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
