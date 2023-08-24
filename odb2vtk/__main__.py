@@ -7,9 +7,9 @@ from abqpy.cli import abaqus
 def main():
     odb2vtk = str(Path(__file__).parent.resolve() / "odb2vtk.py")
     argv = sys.argv
-    if "--step" in argv and len(argv) > argv.index("--step") + 1:
-        idx = argv.index("--step")
-        argv[idx + 1] = f'"{argv[idx + 1]}"'
+    for i in range(1, len(argv)):
+        if " " in argv[i]:
+            argv[i] = f'"{argv[i]}"'
     abaqus.python(odb2vtk, *argv[1:])
 
 
