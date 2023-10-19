@@ -5,7 +5,7 @@ A python wrapper package for the [ODB2VTK](https://github.com/Arris-Composites/O
 ## Installation
 
 ```sh
-pip install git+https://github.com/haiiliin/odb2vtk.git@main
+pip install odb2vtk
 ```
 
 ## Usage
