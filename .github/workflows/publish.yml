@@ -34,7 +34,7 @@ jobs:
       - name: Build package
         run: python -m build
       - name: Publish package
-        uses: pypa/gh-action-pypi-publish@v1.8.5
+        uses: pypa/gh-action-pypi-publish@v1.13.0
         with:
           user: hailin
           password: ${{ secrets.PYPI_PASSWORD }}
